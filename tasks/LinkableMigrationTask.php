@@ -6,6 +6,8 @@ use gorriecoe\Link\Models\Link;
 use SilverStripe\Control\Director;
 use SilverStripe\Dev\BuildTask;
 use SilverStripe\Subsites\Model\Subsite;
+use SilverStripe\ORM\DB;
+use SilverStripe\ORM\Queries\SQLSelect;
 
 class LinkableMigrationTask extends BuildTask
 {
@@ -53,8 +55,10 @@ class LinkableMigrationTask extends BuildTask
      */
     public function migrateLinks()
     {
-        $links = \Sheadawson\Linkable\Models\Link::get();
+
+        $links = Dynamic\Link\Models\Link::get();
         $ct = 0;
+
         foreach ($links as $link) {
             $object = $link->newClassInstance(Link::class);
             $object->write();
