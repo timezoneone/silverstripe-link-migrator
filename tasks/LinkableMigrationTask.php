@@ -56,7 +56,7 @@ class LinkableMigrationTask extends BuildTask
     public function migrateLinks()
     {
 
-        $links = Dynamic\Link\Models\Link::get();
+        $links = \Dynamic\Link\Models\Link::get();
         $ct = 0;
 
         foreach ($links as $link) {
