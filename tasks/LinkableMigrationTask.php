@@ -3,8 +3,10 @@
 namespace Dynamic\Link\Task;
 
 use gorriecoe\Link\Models\Link;
+use SilverStripe\ORM\DataObject;
 use SilverStripe\Control\Director;
 use SilverStripe\Dev\BuildTask;
+use SilverStripe\Core\Config\Config;
 use SilverStripe\Subsites\Model\Subsite;
 use SilverStripe\ORM\DB;
 use SilverStripe\ORM\Queries\SQLSelect;
@@ -58,9 +60,11 @@ class LinkableMigrationTask extends BuildTask
 
         $links = \Dynamic\Link\Models\Link::get();
         $ct = 0;
+        DataObject::Config()->set('validation_enabled', false);
 
         foreach ($links as $link) {
             $object = $link->newClassInstance(Link::class);
+            $object->validation_enabled = false;
             $object->write();
             static::write_message("{$object->Title} updated.");
             $ct++;
