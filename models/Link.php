@@ -17,7 +17,7 @@ use SilverStripe\ORM\DataObject;
  * @property bool OpenInNewWindow
  * @property string Template
  */
-class Link extends DataObject
+class LinkableLink extends DataObject
 {
     /**
      * @var array
@@ -30,6 +30,7 @@ class Link extends DataObject
         'Phone' => 'Varchar(255)',
         'OpenInNewWindow' => 'Boolean',
         'Template' => 'Varchar(255)',
+        'Anchor' => 'Varchar(255)',
     ];
 
     /**
@@ -37,6 +38,7 @@ class Link extends DataObject
      */
     private static $has_one = [
         'File' => File::class,
+        'SiteTree' => SiteTree::class,
     ];
 
     /**

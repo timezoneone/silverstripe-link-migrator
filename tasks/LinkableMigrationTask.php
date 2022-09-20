@@ -58,9 +58,9 @@ class LinkableMigrationTask extends BuildTask
     public function migrateLinks()
     {
 
-        $links = \Dynamic\Link\Models\Link::get();
+        $links = \Dynamic\Link\Models\LinkableLink::get();
         $ct = 0;
-        DataObject::Config()->set('validation_enabled', false);
+        //DataObject::Config()->set('validation_enabled', false);
 
         foreach ($links as $link) {
             $object = $link->newClassInstance(Link::class);
